@@ -1,0 +1,39 @@
+{
+  "tasks": {
+    "task-1793574754799-kl5wg4": {
+      "taskId": "task-1793574754799-kl5wg4",
+      "type": "hive-mind",
+      "description": "Audit portfolio project architecture and components",
+      "priority": "normal",
+      "status": "pending",
+      "progress": 0,
+      "assignedTo": [],
+      "tags": [
+        "hive-mind",
+        "consensus:none",
+        "timeout:300s"
+      ],
+      "createdAt": "2026-11-01T23:12:34.799Z",
+      "startedAt": null,
+      "completedAt": null
+    },
+    "task-1793575656420-swwpgy": {
+      "taskId": "task-1793575656420-swwpgy",
+      "type": "hive-mind",
+      "description": "Maintain strict anti-slop visual fidelity and consensus verification across Bry-Port portfolio",
+      "priority": "high",
+      "status": "pending",
+      "progress": 0,
+      "assignedTo": [],
+      "tags": [
+        "hive-mind",
+        "consensus:required",
+        "timeout:300s"
+      ],
+      "createdAt": "2026-11-01T23:27:36.420Z",
+      "startedAt": null,
+      "completedAt": null
+    }
+  },
+  "version": "3.0.0"
+}

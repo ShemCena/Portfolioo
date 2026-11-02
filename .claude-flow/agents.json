@@ -1,0 +1,69 @@
+{
+  "agents": {
+    "planner-1793574722350-j1y5": {
+      "agentId": "planner-1793574722350-j1y5",
+      "agentType": "planner",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "role": "specialist",
+        "hiveRole": "specialist"
+      },
+      "createdAt": "2026-11-01T23:12:02.350Z",
+      "domain": "hive-mind"
+    },
+    "researcher-1793574727762-5w5v": {
+      "agentId": "researcher-1793574727762-5w5v",
+      "agentType": "researcher",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "role": "scout",
+        "hiveRole": "scout"
+      },
+      "createdAt": "2026-11-01T23:12:07.762Z",
+      "domain": "hive-mind"
+    },
+    "coder-1793574730262-ff08": {
+      "agentId": "coder-1793574730262-ff08",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "role": "specialist",
+        "hiveRole": "specialist"
+      },
+      "createdAt": "2026-11-01T23:12:10.263Z",
+      "domain": "hive-mind"
+    },
+    "reviewer-1793574731734-a53q": {
+      "agentId": "reviewer-1793574731734-a53q",
+      "agentType": "reviewer",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "role": "specialist",
+        "hiveRole": "specialist"
+      },
+      "createdAt": "2026-11-01T23:12:11.734Z",
+      "domain": "hive-mind"
+    },
+    "tester-1793574733789-v4kd": {
+      "agentId": "tester-1793574733789-v4kd",
+      "agentType": "tester",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "role": "specialist",
+        "hiveRole": "specialist"
+      },
+      "createdAt": "2026-11-01T23:12:13.789Z",
+      "domain": "hive-mind"
+    }
+  }
+}
