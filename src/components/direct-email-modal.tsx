@@ -120,8 +120,15 @@ export function DirectEmailModal({ isOpen, onClose, defaultSubject = "" }: Direc
         role="dialog"
         aria-modal="true"
         aria-labelledby="direct-email-title"
-        className="relative w-full max-w-lg rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#141414] shadow-2xl p-6 sm:p-7 space-y-5 animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-lg rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#141414] shadow-2xl p-6 sm:p-7 space-y-5 animate-in zoom-in-95 duration-200 overflow-hidden"
       >
+        {/* Animated Loading Bar during transmission */}
+        {status === "submitting" && (
+          <div className="absolute top-0 inset-x-0 h-[2.5px] bg-emerald-500/10 overflow-hidden">
+            <div className="h-full bg-linear-to-r from-emerald-500 via-teal-400 to-emerald-500 animate-progress-sweep shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+          </div>
+        )}
+
         {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">

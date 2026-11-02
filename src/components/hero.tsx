@@ -7,6 +7,7 @@ import { useTheme } from "next-themes";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/lib/data";
 import { GithubIcon, LinkedinIcon } from "@/components/social-icons";
+import { ScrollIndicator } from "@/components/scroll-indicator";
 
 export function Hero() {
   const { personal } = PORTFOLIO_DATA;
@@ -173,6 +174,9 @@ export function Hero() {
             </Link>
           </div>
         </div>
+
+        {/* Interactive Scroll-Down Indicator */}
+        <ScrollIndicator />
       </div>
     </section>
   );

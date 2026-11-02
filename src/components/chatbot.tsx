@@ -215,10 +215,16 @@ export function Chatbot() {
                 ) : m.content ? (
                   <FormattedAssistantMessage content={m.content} />
                 ) : loading && i === messages.length - 1 ? (
-                  <span className="inline-flex items-center gap-1.5 text-gray-400 font-mono text-[11px]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Thinking...
-                  </span>
+                  <div className="flex items-center gap-2 py-1 text-gray-500 dark:text-gray-400 font-mono text-[11px]">
+                    <div className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-typing-1" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-typing-2" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-typing-3" />
+                    </div>
+                    <span className="text-[10px] tracking-wide text-gray-400 dark:text-gray-500">
+                      Shem AI is thinking...
+                    </span>
+                  </div>
                 ) : null}
               </div>
             ))}
