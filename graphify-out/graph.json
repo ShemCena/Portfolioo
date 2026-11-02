@@ -1,0 +1,364 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {
+    "name": "Hezekiah Shem Baling Portfolio Knowledge Graph",
+    "version": "3.0.0",
+    "generated_at": "2026-11-02T10:16:36.290Z",
+    "nodes_count": 24,
+    "links_count": 26,
+    "vibe_coding_status": "persisted_to_hive_and_graphify"
+  },
+  "nodes": [
+    {
+      "id": "app/page.tsx",
+      "label": "Page Root",
+      "file_type": "code",
+      "community": 1,
+      "degree": 14,
+      "description": "Main single-page portfolio layout mounting all sections, page loader, and scroll reveals."
+    },
+    {
+      "id": "components/navbar.tsx",
+      "label": "Navbar",
+      "file_type": "code",
+      "community": 1,
+      "degree": 4,
+      "description": "Compact header with HSB monogram, 3 navigation links, and theme toggle."
+    },
+    {
+      "id": "components/hero.tsx",
+      "label": "Hero Section",
+      "file_type": "code",
+      "community": 1,
+      "degree": 8,
+      "description": "Hero with dual-picture avatar (anime/suit), 10+ hours bio, CTA buttons, and scroll indicator."
+    },
+    {
+      "id": "components/what-i-offer.tsx",
+      "label": "What I Can Offer",
+      "file_type": "code",
+      "community": 1,
+      "degree": 4,
+      "description": "3 service pillars: MERN Web Apps, Power BI & SQL Dashboards, Python Data Automation."
+    },
+    {
+      "id": "components/projects.tsx",
+      "label": "Projects Section",
+      "file_type": "code",
+      "community": 1,
+      "degree": 3,
+      "description": "Featured projects showcase with live links and GitHub integration."
+    },
+    {
+      "id": "components/skills.tsx",
+      "label": "Skills & Tech",
+      "file_type": "code",
+      "community": 1,
+      "degree": 2,
+      "description": "Dual bi-directional marquee strips displaying core technical stack."
+    },
+    {
+      "id": "components/experience.tsx",
+      "label": "Experience",
+      "file_type": "code",
+      "community": 1,
+      "degree": 2,
+      "description": "Chronological engineering and data analysis career track."
+    },
+    {
+      "id": "components/outside-the-ide.tsx",
+      "label": "Outside the IDE",
+      "file_type": "code",
+      "community": 1,
+      "degree": 5,
+      "description": "Interactive 3D stacked photo deck with gym, fashion, and travel moments."
+    },
+    {
+      "id": "components/contact.tsx",
+      "label": "Contact Section",
+      "file_type": "code",
+      "community": 1,
+      "degree": 4,
+      "description": "Inquiry call-to-action featuring direct email dispatch modal."
+    },
+    {
+      "id": "components/footer.tsx",
+      "label": "Footer",
+      "file_type": "code",
+      "community": 1,
+      "degree": 3,
+      "description": "Clean copyright row with social links and smooth scroll-to-top."
+    },
+    {
+      "id": "components/page-loader.tsx",
+      "label": "PageLoader",
+      "file_type": "code",
+      "community": 2,
+      "degree": 3,
+      "description": "Initial mount splash with glowing HSB monogram and top progress sweep."
+    },
+    {
+      "id": "components/scroll-indicator.tsx",
+      "label": "ScrollIndicator",
+      "file_type": "code",
+      "community": 2,
+      "degree": 3,
+      "description": "Interactive mouse pill scroll-down cue that auto-hides past hero fold."
+    },
+    {
+      "id": "components/scroll-reveal.tsx",
+      "label": "ScrollReveal",
+      "file_type": "code",
+      "community": 2,
+      "degree": 7,
+      "description": "Zero-dependency IntersectionObserver scroll-driven viewport entrance animator."
+    },
+    {
+      "id": "components/theme-toggle.tsx",
+      "label": "ThemeToggle",
+      "file_type": "code",
+      "community": 2,
+      "degree": 3,
+      "description": "Next-themes switcher toggle with dark/light mode icons."
+    },
+    {
+      "id": "components/chatbot.tsx",
+      "label": "Chatbot (Ask Shem AI)",
+      "file_type": "code",
+      "community": 3,
+      "degree": 9,
+      "description": "Floating Gemini-powered assistant with mobile DVH adaptation, streaming fallback, and quick suggestions."
+    },
+    {
+      "id": "app/api/chat/route.ts",
+      "label": "API Chat Route",
+      "file_type": "code",
+      "community": 3,
+      "degree": 5,
+      "description": "Serverless route with Gemini 3.5 Flash Lite, multi-header IP rate limiting, and no-transform streaming."
+    },
+    {
+      "id": "components/direct-email-modal.tsx",
+      "label": "DirectEmailModal",
+      "file_type": "code",
+      "community": 3,
+      "degree": 4,
+      "description": "Dual-transport email submission via Web3Forms with serverless nodemailer fallback."
+    },
+    {
+      "id": "app/api/send-email/route.ts",
+      "label": "API Send Email",
+      "file_type": "code",
+      "community": 3,
+      "degree": 2,
+      "description": "Server-side nodemailer email relay."
+    },
+    {
+      "id": "lib/data.ts",
+      "label": "Portfolio Data",
+      "file_type": "code",
+      "community": 3,
+      "degree": 8,
+      "description": "Single source of truth for personal info, project lists, and skills."
+    },
+    {
+      "id": "lib/profile-knowledge.ts",
+      "label": "AI Profile Knowledge",
+      "file_type": "code",
+      "community": 3,
+      "degree": 4,
+      "description": "Grounding knowledge base providing 4 dynamic AI representative personas."
+    },
+    {
+      "id": "concept:DualAvatarToggle",
+      "label": "Dual Avatar Flip Pattern",
+      "file_type": "concept",
+      "community": 4,
+      "degree": 3,
+      "description": "Anime default in dark mode, professional suit in light mode, interactive click/tap invert."
+    },
+    {
+      "id": "concept:MobileDvhHardening",
+      "label": "Mobile DVH Viewport Architecture",
+      "file_type": "concept",
+      "community": 4,
+      "degree": 3,
+      "description": "Dynamic Viewport Height prevents virtual keyboard occlusion on mobile chat."
+    },
+    {
+      "id": "concept:FourAIPersonas",
+      "label": "Adaptive Persona Engine",
+      "file_type": "concept",
+      "community": 4,
+      "degree": 3,
+      "description": "Dynamic persona routing based on visitor inquiry intent."
+    },
+    {
+      "id": "concept:RuFloSwarmMemory",
+      "label": "RuFlo Hive Mind Integration",
+      "file_type": "concept",
+      "community": 4,
+      "degree": 6,
+      "description": "Persistent 384-dimensional vector memory stored in .swarm/memory.db."
+    }
+  ],
+  "links": [
+    {
+      "source": "app/page.tsx",
+      "target": "components/page-loader.tsx",
+      "relation": "EXTRACTED",
+      "kind": "mounts"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "components/navbar.tsx",
+      "relation": "EXTRACTED",
+      "kind": "mounts"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "components/hero.tsx",
+      "relation": "EXTRACTED",
+      "kind": "mounts"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "components/what-i-offer.tsx",
+      "relation": "EXTRACTED",
+      "kind": "mounts"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "components/projects.tsx",
+      "relation": "EXTRACTED",
+      "kind": "mounts"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "components/skills.tsx",
+      "relation": "EXTRACTED",
+      "kind": "mounts"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "components/experience.tsx",
+      "relation": "EXTRACTED",
+      "kind": "mounts"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "components/outside-the-ide.tsx",
+      "relation": "EXTRACTED",
+      "kind": "mounts"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "components/contact.tsx",
+      "relation": "EXTRACTED",
+      "kind": "mounts"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "components/footer.tsx",
+      "relation": "EXTRACTED",
+      "kind": "mounts"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "components/chatbot.tsx",
+      "relation": "EXTRACTED",
+      "kind": "mounts"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "components/scroll-reveal.tsx",
+      "relation": "EXTRACTED",
+      "kind": "wraps"
+    },
+    {
+      "source": "components/hero.tsx",
+      "target": "lib/data.ts",
+      "relation": "EXTRACTED",
+      "kind": "reads"
+    },
+    {
+      "source": "components/hero.tsx",
+      "target": "components/scroll-indicator.tsx",
+      "relation": "EXTRACTED",
+      "kind": "renders"
+    },
+    {
+      "source": "components/hero.tsx",
+      "target": "concept:DualAvatarToggle",
+      "relation": "INFERRED",
+      "kind": "implements"
+    },
+    {
+      "source": "components/navbar.tsx",
+      "target": "components/theme-toggle.tsx",
+      "relation": "EXTRACTED",
+      "kind": "renders"
+    },
+    {
+      "source": "components/chatbot.tsx",
+      "target": "app/api/chat/route.ts",
+      "relation": "EXTRACTED",
+      "kind": "calls"
+    },
+    {
+      "source": "components/chatbot.tsx",
+      "target": "concept:MobileDvhHardening",
+      "relation": "INFERRED",
+      "kind": "implements"
+    },
+    {
+      "source": "app/api/chat/route.ts",
+      "target": "lib/profile-knowledge.ts",
+      "relation": "EXTRACTED",
+      "kind": "imports"
+    },
+    {
+      "source": "lib/profile-knowledge.ts",
+      "target": "lib/data.ts",
+      "relation": "EXTRACTED",
+      "kind": "reads"
+    },
+    {
+      "source": "lib/profile-knowledge.ts",
+      "target": "concept:FourAIPersonas",
+      "relation": "INFERRED",
+      "kind": "implements"
+    },
+    {
+      "source": "components/contact.tsx",
+      "target": "components/direct-email-modal.tsx",
+      "relation": "EXTRACTED",
+      "kind": "opens"
+    },
+    {
+      "source": "components/direct-email-modal.tsx",
+      "target": "app/api/send-email/route.ts",
+      "relation": "EXTRACTED",
+      "kind": "calls"
+    },
+    {
+      "source": "concept:RuFloSwarmMemory",
+      "target": "app/page.tsx",
+      "relation": "INFERRED",
+      "kind": "indexes"
+    },
+    {
+      "source": "concept:RuFloSwarmMemory",
+      "target": "components/chatbot.tsx",
+      "relation": "INFERRED",
+      "kind": "indexes"
+    },
+    {
+      "source": "concept:RuFloSwarmMemory",
+      "target": "lib/data.ts",
+      "relation": "INFERRED",
+      "kind": "indexes"
+    }
+  ]
+}
