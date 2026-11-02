@@ -10,6 +10,7 @@ interface LifestylePhoto {
   subtitle: string;
   image: string;
   alt: string;
+  objectPosition?: string;
 }
 
 const PHOTOS: LifestylePhoto[] = [
@@ -18,8 +19,18 @@ const PHOTOS: LifestylePhoto[] = [
     tag: "Gym",
     title: "Strength & Discipline",
     subtitle: "Heavy lifting, consistency, and mental clarity",
-    image: "/outside/gym.svg",
+    image: "/outside/gym.jpg",
     alt: "Hezekiah Shem Baling - Gym & Strength Training",
+    objectPosition: "object-[center_20%]",
+  },
+  {
+    id: "fashion",
+    tag: "Fashion",
+    title: "Style & Aesthetics",
+    subtitle: "Clean silhouettes, monochromatic palettes, and detail",
+    image: "/outside/fashion.jpg",
+    alt: "Hezekiah Shem Baling - Minimalist Fashion & Style",
+    objectPosition: "object-[center_15%]",
   },
   {
     id: "travel",
@@ -28,14 +39,7 @@ const PHOTOS: LifestylePhoto[] = [
     subtitle: "New cities, landscapes, and perspectives",
     image: "/outside/travel.svg",
     alt: "Hezekiah Shem Baling - Travel and Adventures",
-  },
-  {
-    id: "fashion",
-    tag: "Fashion",
-    title: "Style & Aesthetics",
-    subtitle: "Clean silhouettes, monochromatic palettes, and detail",
-    image: "/outside/fashion.svg",
-    alt: "Hezekiah Shem Baling - Minimalist Fashion & Style",
+    objectPosition: "object-center",
   },
 ];
 
@@ -155,7 +159,7 @@ export function OutsideTheIDE() {
                       alt={photo.alt}
                       width={320}
                       height={320}
-                      className="w-full h-full object-cover pointer-events-none select-none"
+                      className={`w-full h-full object-cover pointer-events-none select-none ${photo.objectPosition || "object-center"}`}
                     />
 
                     {/* Subtle caption overlay for front card */}

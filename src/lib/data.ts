@@ -60,8 +60,8 @@ export const PORTFOLIO_DATA: PortfolioData = {
     email: "shemcena@gmail.com",
     github: "https://github.com/ShemCena",
     linkedin: "https://www.linkedin.com/in/hezekiah-shem-baling-07482427b/",
-    avatarDefault: "/profile-default.svg",
-    avatarHover: "/profile-hover.svg",
+    avatarDefault: "/profile-anime.jpg",
+    avatarHover: "/profile-professional.jpg",
   },
 
   projects: [

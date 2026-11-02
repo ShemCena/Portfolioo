@@ -8,9 +8,6 @@ import { ThemeToggle } from "./theme-toggle";
 const NAV_LINKS = [
   { href: "#what-i-offer", label: "Services" },
   { href: "#projects", label: "Projects" },
-  { href: "#technologies", label: "Technologies" },
-  { href: "#experience", label: "Experience" },
-  { href: "#outside", label: "Outside" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -43,9 +40,9 @@ export function Navbar() {
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden sm:flex items-center gap-5">
-          <div className="flex items-center gap-5">
+        {/* Desktop Navigation - Compact to the Right */}
+        <div className="hidden sm:flex items-center gap-4 ml-auto">
+          <div className="flex items-center gap-4 sm:gap-5">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}

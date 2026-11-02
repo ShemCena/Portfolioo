@@ -7,7 +7,6 @@ import { useTheme } from "next-themes";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/lib/data";
 import { GithubIcon, LinkedinIcon } from "@/components/social-icons";
-import { VisitorCounter } from "@/components/visitor-counter";
 
 export function Hero() {
   const { personal } = PORTFOLIO_DATA;
@@ -20,28 +19,25 @@ export function Hero() {
   }, []);
 
   // Theme-aware avatar swap:
-  // In dark mode: base = default, alternate = hover
-  // In light mode: base = hover, alternate = default
+  // In dark mode: base = anime default, alternate = professional suit
+  // In light mode: base = professional suit, alternate = anime default
   // When clicked/tapped (on mobile or desktop): inverts to the other look
   const isDark = !mounted || resolvedTheme === "dark";
   const showSecondPicture = isDark ? isFlipped : !isFlipped;
 
   return (
     <section id="top" className="pt-8 sm:pt-12 pb-10 border-b border-dashed border-gray-200 dark:border-gray-800">
-      {/* Top Meta Row: Status & Location & Visitor Count */}
+      {/* Top Meta Row: Status & Location */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
         <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           {personal.status}
         </span>
 
-        <div className="flex items-center gap-2.5">
-          <VisitorCounter />
-          <span className="inline-flex items-center gap-1 text-[11px] text-gray-500 dark:text-gray-400">
-            <MapPin className="w-3 h-3 text-emerald-500" />
-            {personal.location}
-          </span>
-        </div>
+        <span className="inline-flex items-center gap-1 text-[11px] text-gray-500 dark:text-gray-400">
+          <MapPin className="w-3 h-3 text-emerald-500" />
+          {personal.location}
+        </span>
       </div>
 
       {/* Profile Header Row: Dual-Picture Avatar + Name + Subtitle */}
@@ -54,31 +50,31 @@ export function Hero() {
           title="Click or tap to switch profile picture"
           aria-label="Switch profile picture"
         >
-          {/* Picture 1 (Professional Look) */}
+          {/* Picture 1 (Default Anime Look) */}
           <Image
-            src={personal.avatarDefault || "/profile-default.svg"}
+            src={personal.avatarDefault || "/profile-anime.jpg"}
             alt={personal.name}
             width={96}
             height={96}
             unoptimized
-            className={`absolute inset-0 h-full w-full object-cover transition-all duration-300 ease-out pointer-events-none ${
+            className={`absolute inset-0 h-full w-full object-cover object-center transition-all duration-300 ease-out pointer-events-none ${
               showSecondPicture
-                ? "opacity-0 scale-95 group-hover/avatar:opacity-100 group-hover/avatar:scale-100"
-                : "opacity-100 scale-100 group-hover/avatar:opacity-0 group-hover/avatar:scale-110"
+                ? "opacity-0 scale-95 md:group-hover/avatar:opacity-100 md:group-hover/avatar:scale-100"
+                : "opacity-100 scale-100 md:group-hover/avatar:opacity-0 md:group-hover/avatar:scale-110"
             }`}
           />
 
-          {/* Picture 2 (Creative Alternate Look) */}
+          {/* Picture 2 (Professional Headshot) */}
           <Image
-            src={personal.avatarHover || "/profile-hover.svg"}
-            alt={`${personal.name} alternate profile`}
+            src={personal.avatarHover || "/profile-professional.jpg"}
+            alt={`${personal.name} professional headshot`}
             width={96}
             height={96}
             unoptimized
-            className={`absolute inset-0 h-full w-full object-cover transition-all duration-300 ease-out pointer-events-none ${
+            className={`absolute inset-0 h-full w-full object-cover object-[center_20%] transition-all duration-300 ease-out pointer-events-none ${
               showSecondPicture
-                ? "opacity-100 scale-100 group-hover/avatar:opacity-0 group-hover/avatar:scale-110"
-                : "opacity-0 scale-95 group-hover/avatar:opacity-100 group-hover/avatar:scale-100"
+                ? "opacity-100 scale-100 md:group-hover/avatar:opacity-0 md:group-hover/avatar:scale-110"
+                : "opacity-0 scale-95 md:group-hover/avatar:opacity-100 md:group-hover/avatar:scale-100"
             }`}
           />
 
