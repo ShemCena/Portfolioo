@@ -82,9 +82,14 @@ export function Chatbot() {
         aria-expanded={open}
         aria-controls="chat-panel"
         aria-label={open ? "Close chat" : `Ask about ${name}`}
-        className="fixed bottom-5 right-5 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 text-white shadow-xl hover:bg-emerald-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 transition-all hover:scale-105"
+        className="fixed bottom-6 left-6 z-40 inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-[#1a1a1a]/95 text-gray-800 dark:text-gray-200 backdrop-blur-md shadow-lg hover:border-emerald-500/50 hover:text-emerald-600 dark:hover:text-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 transition-all duration-200"
       >
-        {open ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+        </span>
+        <span className="text-xs font-mono font-medium">Ask Shem AI</span>
+        {open ? <X className="h-3.5 w-3.5 ml-0.5" /> : <MessageCircle className="h-3.5 w-3.5 ml-0.5" />}
       </button>
 
       {open && (
@@ -92,7 +97,7 @@ export function Chatbot() {
           id="chat-panel"
           role="dialog"
           aria-label={`Chat about ${name}`}
-          className="fixed bottom-20 right-5 z-50 flex h-[30rem] w-[calc(100vw-2.5rem)] max-w-sm flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200"
+          className="fixed bottom-20 left-6 z-50 flex h-[30rem] w-[calc(100vw-2.5rem)] max-w-sm flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200"
         >
           {/* Header */}
           <div className="border-b border-[var(--border)] px-4 py-3 bg-[var(--card-hover)] flex items-center justify-between">

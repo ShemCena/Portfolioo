@@ -11,6 +11,7 @@ import { About } from "@/components/about";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 import { FloatingCTA } from "@/components/floating-cta";
+import { Chatbot } from "@/components/chatbot";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <Footer />
       </main>
       <FloatingCTA />
+      <Chatbot />
     </div>
   );
 }
