@@ -69,7 +69,7 @@ body {
   background: var(--muted);
 }
 
-/* Infinite Marquee Left to Right */
+/* Infinite Marquee: Row 1 Left to Right */
 @keyframes marquee-ltr {
   0% {
     transform: translate3d(-50%, 0, 0);
@@ -82,10 +82,77 @@ body {
 .animate-marquee-ltr {
   display: flex;
   width: max-content;
-  animation: marquee-ltr 28s linear infinite;
+  animation: marquee-ltr 30s linear infinite;
   will-change: transform;
 }
 
 .animate-marquee-ltr:hover {
   animation-play-state: paused;
+}
+
+/* Infinite Marquee: Row 2 Right to Left (Opposing Direction) */
+@keyframes marquee-rtl {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-rtl {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-rtl:hover {
+  animation-play-state: paused;
+}
+
+/* Staggered Hero Entrance Animations */
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-avatar {
+  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-name {
+  animation: heroFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.animate-hero-title {
+  animation: heroFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+}
+
+.animate-hero-bio {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+}
+
+.animate-hero-cta {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-avatar,
+  .animate-hero-name,
+  .animate-hero-title,
+  .animate-hero-bio,
+  .animate-hero-cta,
+  .animate-marquee-ltr,
+  .animate-marquee-rtl {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }

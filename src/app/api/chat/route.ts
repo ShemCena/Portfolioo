@@ -5,7 +5,7 @@ import { buildSystemPrompt } from "@/lib/profile-knowledge";
 
 export const maxDuration = 30;
 
-const MODEL_ID = "gemini-2.5-flash";
+const MODEL_ID = "gemini-3.5-flash-lite";
 
 const bodySchema = z
   .object({
@@ -67,9 +67,12 @@ export async function POST(req: Request) {
       model: google(MODEL_ID),
       system: buildSystemPrompt(),
       messages: parsed.data.messages,
-      maxOutputTokens: 400,
+      maxOutputTokens: 1000,
       abortSignal: AbortSignal.timeout(20_000),
-      onError: ({ error }) => console.error("chat stream error", (error as Error)?.name),
+      onError: ({ error }) => {
+        const err = error as Error;
+        console.error("chat stream error:", err?.name, err?.message);
+      },
     });
     return result.toTextStreamResponse();
   } catch (error) {

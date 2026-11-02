@@ -5,17 +5,34 @@ import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/lib/data";
 import { GithubIcon, LinkedinIcon } from "@/components/social-icons";
+import { VisitorCounter } from "@/components/visitor-counter";
 
 export function Hero() {
   const { personal } = PORTFOLIO_DATA;
 
   return (
-    <section id="top" className="pt-10 sm:pt-14 pb-12 border-b border-dashed border-gray-200 dark:border-gray-800">
-      {/* Profile Header Row: Dual-Picture Avatar + Name + Subtitle + Socials */}
-      <div className="flex items-center gap-4 sm:gap-6 mb-8">
+    <section id="top" className="pt-8 sm:pt-12 pb-10 border-b border-dashed border-gray-200 dark:border-gray-800">
+      {/* Top Meta Row: Status & Location & Visitor Count */}
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          {personal.status}
+        </span>
+
+        <div className="flex items-center gap-2.5">
+          <VisitorCounter />
+          <span className="inline-flex items-center gap-1 text-[11px] text-gray-500 dark:text-gray-400">
+            <MapPin className="w-3 h-3 text-emerald-500" />
+            {personal.location}
+          </span>
+        </div>
+      </div>
+
+      {/* Profile Header Row: Dual-Picture Avatar + Name + Subtitle */}
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 mb-5">
         {/* Interactive Dual-Picture Avatar with Hover Reveal */}
         <div
-          className="relative group/avatar h-20 w-20 sm:h-24 sm:w-24 shrink-0 rounded-full border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] shadow-sm overflow-hidden select-none cursor-pointer transition-all duration-300 hover:scale-105 hover:ring-2 hover:ring-emerald-500/50"
+          className="animate-hero-avatar relative group/avatar h-20 w-20 sm:h-22 sm:w-22 shrink-0 rounded-full border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] shadow-xs overflow-hidden select-none cursor-pointer transition-all duration-300 hover:scale-105 hover:ring-2 hover:ring-emerald-500/50"
           title="Hover to reveal alternate picture"
         >
           {/* Default Picture (State 1) */}
@@ -40,99 +57,98 @@ export function Hero() {
 
           {/* Fallback Monogram background */}
           <div className="absolute inset-0 -z-10 flex items-center justify-center bg-gray-100 dark:bg-zinc-800">
-            <span className="text-xl sm:text-2xl font-bold font-mono text-gray-400">
+            <span className="text-xl font-bold font-mono text-gray-400">
               {personal.monogram}
             </span>
           </div>
         </div>
 
-        {/* Identity & Socials */}
-        <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 sm:gap-2">
-          <div className="flex flex-wrap items-center gap-2.5">
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
-              {personal.name}
-            </h1>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              {personal.status}
+        {/* Identity & Subtitle - Styled & Animated Dual Pillars */}
+        <div className="space-y-1.5">
+          <h1 className="animate-hero-name text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 dark:text-white leading-tight transition-colors duration-200 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-default">
+            {personal.name}
+          </h1>
+          <div className="animate-hero-title flex flex-wrap items-center gap-2 pt-0.5">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20 shadow-2xs transition-all hover:bg-emerald-500/15">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span>Full-Stack Web Developer</span>
             </span>
-          </div>
-
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-normal flex flex-wrap items-center gap-1.5">
-            <span>Full-Stack Development</span>
-            <span aria-hidden="true">·</span>
-            <span>Data Analytics</span>
-            <span aria-hidden="true">·</span>
-            <span className="flex items-center gap-1">
-              <MapPin className="w-3 h-3 text-gray-400" />
-              {personal.location}
+            <span className="text-xs font-mono text-gray-400 dark:text-gray-500 select-none">&amp;</span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-medium bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20 shadow-2xs transition-all hover:bg-amber-500/15">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+              <span>Data Analyst</span>
             </span>
-          </p>
-
-          <div className="flex items-center gap-3 pt-1">
-            <a
-              href={personal.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-all hover:-translate-y-0.5"
-              title="GitHub"
-              aria-label="GitHub Profile"
-            >
-              <GithubIcon className="w-4 h-4" />
-            </a>
-            <a
-              href={personal.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-all hover:-translate-y-0.5"
-              title="LinkedIn"
-              aria-label="LinkedIn Profile"
-            >
-              <LinkedinIcon className="w-4 h-4" />
-            </a>
-            <a
-              href={`mailto:${personal.email}`}
-              className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-all hover:-translate-y-0.5"
-              title="Email"
-              aria-label="Email Shem"
-            >
-              <Mail className="w-4 h-4" />
-            </a>
           </div>
         </div>
       </div>
 
-      {/* Hero Headline & Bio */}
+      {/* Bio Paragraph */}
       <div className="space-y-4">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight text-gray-900 dark:text-white">
-          I Build, Analyze &amp; <span className="text-[#1D9BF0]">Optimize.</span>
-        </h2>
-
-        <p className="text-sm sm:text-base font-light leading-relaxed text-gray-600 dark:text-gray-400">
-          I&apos;m an aspiring full-stack developer with a data analysis background. I build web applications with the{" "}
-          <span className="font-semibold text-gray-800 dark:text-gray-200">MERN stack</span> and use{" "}
-          <span className="font-semibold text-gray-800 dark:text-gray-200">SQL</span>,{" "}
-          <span className="font-semibold text-gray-800 dark:text-gray-200">Python</span>,{" "}
-          <span className="font-semibold text-gray-800 dark:text-gray-200">Excel</span>, and{" "}
-          <span className="font-semibold text-gray-800 dark:text-gray-200">Power BI</span> to turn raw data into decisions.
+        <p className="animate-hero-bio text-xs sm:text-sm font-light leading-relaxed text-gray-700 dark:text-gray-300 max-w-xl">
+          I build responsive, type-safe web applications with the{" "}
+          <strong className="font-medium text-gray-900 dark:text-white underline decoration-emerald-500/40 decoration-1 underline-offset-2 hover:decoration-emerald-500 transition-colors">
+            MERN stack
+          </strong>{" "}
+          and transform chaotic business spreadsheets into automated executive dashboards with{" "}
+          <strong className="font-medium text-gray-900 dark:text-white underline decoration-amber-500/40 decoration-1 underline-offset-2 hover:decoration-amber-500 transition-colors">
+            SQL, Python, and Power BI
+          </strong>
+          —helping founders and operational teams{" "}
+          <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-medium text-xs border border-emerald-500/20 shadow-2xs transition-transform hover:scale-102">
+            save 10+ hours of manual work every week
+          </span>{" "}
+          and make confident, data-backed decisions.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-wrap items-center gap-3 pt-2">
+        {/* CTA Buttons & Social Links */}
+        <div className="animate-hero-cta flex flex-wrap items-center gap-2.5 pt-1">
           <Link
             href="#projects"
-            className="group inline-flex items-center gap-2 bg-[#121212] dark:bg-white text-white dark:text-black px-5 py-2.5 text-sm font-medium rounded-lg shadow-xs hover:opacity-90 active:scale-95 transition-all"
+            className="group inline-flex items-center gap-1.5 bg-[#121212] dark:bg-white text-white dark:text-black px-4 py-2 text-xs font-medium rounded-lg shadow-xs hover:opacity-90 active:scale-95 transition-all"
           >
-            <span>Explore Projects</span>
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span>Explore Work</span>
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
 
           <Link
             href="#contact"
-            className="inline-flex items-center gap-2 border border-dashed border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 px-5 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-lg active:scale-95 transition-all"
+            className="inline-flex items-center gap-1.5 border border-dashed border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 px-4 py-2 text-xs font-medium text-gray-700 dark:text-gray-300 rounded-lg active:scale-95 transition-all"
           >
             Get In Touch
           </Link>
+
+          <div className="flex items-center gap-2 pl-1.5">
+            <a
+              href={personal.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              title="GitHub Profile"
+              aria-label="GitHub Profile"
+            >
+              <GithubIcon className="w-4 h-4" />
+            </a>
+
+            <a
+              href={personal.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              title="LinkedIn Profile"
+              aria-label="LinkedIn Profile"
+            >
+              <LinkedinIcon className="w-4 h-4" />
+            </a>
+
+            <Link
+              href="#contact"
+              className="p-1.5 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              title="Contact Direct Email"
+              aria-label="Contact Direct Email"
+            >
+              <Mail className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

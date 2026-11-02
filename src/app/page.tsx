@@ -1,36 +1,28 @@
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
-import { FeaturedWork } from "@/components/featured-work";
-import { Stats } from "@/components/stats";
+import { WhatICanOffer } from "@/components/what-i-offer";
 import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { Experience } from "@/components/experience";
-import { Certifications } from "@/components/certifications";
-import { Community } from "@/components/community";
-import { About } from "@/components/about";
+import { OutsideTheIDE } from "@/components/outside-the-ide";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
-import { FloatingCTA } from "@/components/floating-cta";
 import { Chatbot } from "@/components/chatbot";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 dark:bg-ink dark:text-white transition-colors selection:bg-emerald-500/20 selection:text-emerald-700 dark:selection:text-emerald-300">
+    <div className="min-h-screen bg-white text-gray-900 dark:bg-ink dark:text-white transition-colors">
       <Navbar />
-      <main className="max-w-4xl w-full mx-auto px-4 sm:px-6">
+      <main className="max-w-2xl w-full mx-auto px-4 sm:px-6">
         <Hero />
-        <FeaturedWork />
-        <Stats />
+        <WhatICanOffer />
         <Projects />
         <Skills />
         <Experience />
-        <Certifications />
-        <Community />
-        <About />
+        <OutsideTheIDE />
         <Contact />
         <Footer />
       </main>
-      <FloatingCTA />
       <Chatbot />
     </div>
   );

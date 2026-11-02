@@ -3,36 +3,13 @@ export interface PersonalInfo {
   readonly monogram: string;
   readonly title: string;
   readonly location: string;
-  readonly headline: string;
   readonly bio: string;
   readonly status: string;
   readonly email: string;
   readonly github: string;
   readonly linkedin: string;
-  readonly calendly: string;
   readonly avatarDefault?: string;
   readonly avatarHover?: string;
-}
-
-export interface FeaturedWorkCompanion {
-  readonly tag: string;
-  readonly title: string;
-  readonly subtitle: string;
-}
-
-export interface FeaturedWorkItem {
-  readonly badge: string;
-  readonly title: string;
-  readonly subtitle: string;
-  readonly linkText: string;
-  readonly linkUrl: string;
-  readonly companionCards: readonly FeaturedWorkCompanion[];
-}
-
-export interface StatCardItem {
-  readonly value: string;
-  readonly label: string;
-  readonly subtitle: string;
 }
 
 export interface ProjectItem {
@@ -42,6 +19,9 @@ export interface ProjectItem {
   readonly category: "Full-Stack" | "Frontend" | "Data Analytics";
   readonly previewType: "sales-dashboard" | "mern-app" | "python-analytics";
   readonly techIcons: readonly string[];
+  readonly problem?: string;
+  readonly solution?: string;
+  readonly impact?: string;
   readonly liveUrl?: string;
   readonly githubUrl?: string;
   readonly featured?: boolean;
@@ -62,96 +42,34 @@ export interface ExperienceItem {
   readonly highlights: readonly string[];
 }
 
-export interface CertificationItem {
-  readonly date: string;
-  readonly title: string;
-  readonly issuer: string;
-  readonly credentialUrl: string;
-  readonly category: "PROFESSIONAL CREDENTIAL" | "RECENT TRAINING";
-  readonly skills: readonly string[];
-}
-
-export interface CommunityItem {
-  readonly organization: string;
-  readonly role: string;
-  readonly description: string;
-  readonly memberId: string;
-  readonly verifyUrl: string;
-  readonly badgeAccent: string;
-}
-
 export interface PortfolioData {
   readonly personal: PersonalInfo;
-  readonly featuredWork: FeaturedWorkItem;
-  readonly statCards: readonly StatCardItem[];
   readonly projects: readonly ProjectItem[];
   readonly technologies: readonly SkillItem[];
   readonly experience: readonly ExperienceItem[];
-  readonly certifications: readonly CertificationItem[];
-  readonly community: readonly CommunityItem[];
 }
 
 export const PORTFOLIO_DATA: PortfolioData = {
   personal: {
     name: "Hezekiah Shem Baling",
     monogram: "HSB",
-    title: "Aspiring Full-Stack Developer & Data Analyst",
+    title: "Full-Stack Web Developer & Data Analyst",
     location: "Philippines",
-    headline: "I Build, Analyze & Optimize.",
-    bio: "Aspiring full-stack developer with a data analysis background. I build web applications with the MERN stack and use SQL, Python, Excel and Power BI to turn data into decisions.",
+    bio: "I build responsive, type-safe web applications with the MERN stack and transform chaotic business spreadsheets into automated executive dashboards with SQL, Python, and Power BI—helping founders and operational teams save 10+ hours of manual work every week and make confident, data-backed decisions.",
     status: "Open to new opportunities",
-    email: "hezekiah.baling@gmail.com",
+    email: "shemcena@gmail.com",
     github: "https://github.com",
     linkedin: "https://linkedin.com",
-    calendly: "https://calendly.com",
     avatarDefault: "/profile-default.svg",
     avatarHover: "/profile-hover.svg",
   },
 
-  featuredWork: {
-    badge: "Flagship Data Project",
-    title: "Sales Analytics & Business Intelligence Engine",
-    subtitle: "End-to-End SQL Warehouse & Interactive Executive Dashboard",
-    linkText: "View Pipeline ↗",
-    linkUrl: "#projects",
-    companionCards: [
-      {
-        tag: "API Architecture",
-        title: "Express REST Endpoints",
-        subtitle: "Sub-50ms query cache with Redis & Node.js",
-      },
-      {
-        tag: "Data Modeling",
-        title: "Relational Schema in 3NF",
-        subtitle: "ACID compliant transactions & indexed queries",
-      },
-    ],
-  },
-
-  statCards: [
-    {
-      value: "4+",
-      label: "Core Tech Stacks",
-      subtitle: "MERN, PostgreSQL, Python & Power BI",
-    },
-    {
-      value: "10+",
-      label: "Projects & Pipelines",
-      subtitle: "Web applications & data models built",
-    },
-    {
-      value: "100%",
-      label: "Clean Code & Quality",
-      subtitle: "Strict TypeScript & verified components",
-    },
-  ],
-
   projects: [
     {
-      title: "Sales Analytics Dashboard",
+      title: "Sales Analytics & Business Intelligence Engine",
       role: "Data Analyst & SQL Developer",
       description:
-        "Power BI and SQL dashboard summarizing sales trends, revenue performance, and inventory metrics with structured data modeling.",
+        "An automated sales data warehouse and executive Power BI dashboard that replaces 6+ hours of weekly manual spreadsheet reporting with real-time tracking of revenue, profit margins, and inventory turns.",
       category: "Data Analytics",
       previewType: "sales-dashboard",
       techIcons: ["powerbi", "sql", "excel"],
@@ -159,10 +77,10 @@ export const PORTFOLIO_DATA: PortfolioData = {
       featured: true,
     },
     {
-      title: "MERN Full-Stack Web Application",
+      title: "MERN Full-Stack Business Application",
       role: "Full-Stack Developer",
       description:
-        "Full-stack web application with a React front end, Express.js REST API endpoints, and MongoDB document storage.",
+        "A responsive operational platform built with React 19, TypeScript, Express REST APIs, and MongoDB—providing teams with secure role-based access, automated workflows, and sub-second data operations.",
       category: "Full-Stack",
       previewType: "mern-app",
       techIcons: ["mongodb", "express", "react", "nodejs"],
@@ -170,10 +88,10 @@ export const PORTFOLIO_DATA: PortfolioData = {
       featured: true,
     },
     {
-      title: "Python Data Analysis Pipeline",
+      title: "Automated Python Data Pipeline",
       role: "Data Analyst & Python Engineer",
       description:
-        "Python notebook cleaning and analyzing public datasets connected to a PostgreSQL database backend for exploratory evaluation.",
+        "An automated ETL pipeline that extracts, validates, and cleans multi-source commercial datasets, transforming raw transactional chaos into standardized PostgreSQL schemas with zero data loss.",
       category: "Data Analytics",
       previewType: "python-analytics",
       techIcons: ["python", "postgresql", "excel"],
@@ -183,83 +101,48 @@ export const PORTFOLIO_DATA: PortfolioData = {
   ],
 
   technologies: [
-    { name: "React", category: "fullstack", iconKey: "react" },
-    { name: "Node.js", category: "fullstack", iconKey: "nodejs" },
-    { name: "Express.js", category: "fullstack", iconKey: "express" },
-    { name: "MongoDB", category: "database", iconKey: "mongodb" },
+    // Row 1: Web Frontend, Backend & Deployment (12 items)
+    { name: "HTML5", category: "fullstack", iconKey: "html" },
+    { name: "CSS3", category: "fullstack", iconKey: "css" },
+    { name: "JavaScript", category: "fullstack", iconKey: "javascript" },
     { name: "TypeScript", category: "fullstack", iconKey: "typescript" },
-    { name: "JavaScript", category: "fullstack", iconKey: "typescript" },
-    { name: "SQL", category: "database", iconKey: "sql" },
+    { name: "React", category: "fullstack", iconKey: "react" },
+    { name: "Tailwind CSS", category: "fullstack", iconKey: "tailwind" },
+    { name: "Node.js", category: "fullstack", iconKey: "node" },
+    { name: "Express.js", category: "fullstack", iconKey: "express" },
+    { name: "PHP", category: "fullstack", iconKey: "php" },
+    { name: "Laravel", category: "fullstack", iconKey: "laravel" },
+    { name: "Vercel", category: "tooling", iconKey: "vercel" },
+    { name: "Next.js", category: "fullstack", iconKey: "next" },
+
+    // Row 2: Databases, Cloud, Analytics & AI (12 items)
+    { name: "Python", category: "analytics", iconKey: "python" },
     { name: "PostgreSQL", category: "database", iconKey: "postgresql" },
     { name: "MySQL", category: "database", iconKey: "mysql" },
-    { name: "Python", category: "analytics", iconKey: "python" },
-    { name: "Microsoft Excel", category: "analytics", iconKey: "excel" },
+    { name: "MongoDB", category: "database", iconKey: "mongodb" },
+    { name: "Supabase", category: "database", iconKey: "supabase" },
+    { name: "SQL", category: "database", iconKey: "sql" },
     { name: "Power BI", category: "analytics", iconKey: "powerbi" },
-    { name: "Tailwind CSS", category: "fullstack", iconKey: "tailwind" },
+    { name: "Microsoft Excel", category: "analytics", iconKey: "excel" },
+    { name: "Claude AI", category: "ai", iconKey: "claude" },
+    { name: "OpenAI", category: "ai", iconKey: "openai" },
+    { name: "Google Antigravity", category: "ai", iconKey: "antigravity" },
     { name: "Git & GitHub", category: "tooling", iconKey: "git" },
   ],
 
   experience: [
     {
       period: "Present",
-      role: "Aspiring Full-Stack Developer & Analyst",
-      organization: "Independent Projects & Continuous Learning",
-      location: "Philippines · Remote · Self-Directed",
+      role: "Full-Stack Developer & Quantitative Analyst",
+      organization: "Client Solutions & Production Engineering",
+      location: "Philippines · Remote · Worldwide Availability",
       description:
-        "Building web applications and analysing data to grow as a full-stack developer.",
+        "Delivering custom MERN web platforms, automated SQL warehouses, and data automation for founders, businesses, and startups.",
       highlights: [
-        "Building scalable web applications with the MERN stack (MongoDB, Express.js, React, Node.js).",
-        "Designing normalized relational schemas and writing analytical queries in MySQL and PostgreSQL.",
-        "Developing end-to-end data analytics workflows and visual dashboards in Python, Excel, and Power BI.",
+        "Engineering high-performance web applications using React 19, TypeScript, and Node.js with sub-second page loads and clean component architecture.",
+        "Designing 3NF normalized schemas in MySQL & PostgreSQL, optimizing indexing strategies to accelerate reporting queries and eliminate bottlenecks.",
+        "Developing automated Python ETL pipelines and executive Power BI dashboards that replace manual spreadsheet updates with real-time business visibility.",
       ],
-    },
-  ],
-
-  certifications: [
-    {
-      date: "Oct 2025",
-      title: "Associate Data Analyst",
-      issuer: "DataCamp",
-      credentialUrl: "https://datacamp.com",
-      category: "PROFESSIONAL CREDENTIAL",
-      skills: ["SQL", "Data Cleaning", "Exploratory Analysis"],
-    },
-    {
-      date: "Jul 2025",
-      title: "Meta Front-End Developer Specialization",
-      issuer: "Meta / Coursera",
-      credentialUrl: "https://coursera.org",
-      category: "PROFESSIONAL CREDENTIAL",
-      skills: ["React", "JavaScript ES6+", "UI/UX Engineering"],
-    },
-    {
-      date: "Jan 2025",
-      title: "Google Data Analytics Professional",
-      issuer: "Google",
-      credentialUrl: "https://coursera.org",
-      category: "RECENT TRAINING",
-      skills: ["Spreadsheets", "SQL Queries", "Tableau", "Data Ethics"],
-    },
-  ],
-
-  community: [
-    {
-      organization: "Data Analytics Guild Philippines",
-      role: "COMMUNITY MEMBER • MANILA",
-      description:
-        "Active participant in open-source SQL data workshops, exploratory pipeline reviews, and peer code analysis.",
-      memberId: "DAG-PH-2026-8819",
-      verifyUrl: "https://github.com",
-      badgeAccent: "from-emerald-500/20 to-teal-500/10",
-    },
-    {
-      organization: "MERN & Full-Stack Developers PH",
-      role: "COMMUNITY CONTRIBUTOR",
-      description:
-        "Collaborating on modern web application architectures, React performance optimization, and TypeScript adoption.",
-      memberId: "MERN-PH-2026-0941",
-      verifyUrl: "https://github.com",
-      badgeAccent: "from-blue-500/20 to-indigo-500/10",
     },
   ],
 };

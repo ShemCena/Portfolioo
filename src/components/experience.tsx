@@ -8,11 +8,11 @@ export function Experience() {
       <div className="space-y-8">
         {/* Section Header matching Renlenon */}
         <div className="space-y-1">
-          <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-gray-900 dark:text-white">
-            Experience
+          <h2 className="text-xl sm:text-2xl font-light tracking-tight text-gray-900 dark:text-white">
+            Engineering Background
           </h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            Where I&apos;ve worked and what I did there.
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            Track record of delivering full-stack web platforms, automated data pipelines, and quantitative solutions.
           </p>
         </div>
 
@@ -33,17 +33,17 @@ export function Experience() {
                   <p className="text-xs font-medium text-gray-400 dark:text-gray-500">
                     {item.period}
                   </p>
-                  <h3 className="mt-1 text-base sm:text-lg font-semibold text-gray-900 dark:text-white leading-tight">
+                  <h3 className="mt-1 text-sm sm:text-base font-semibold text-gray-900 dark:text-white leading-tight">
                     {item.role}
                   </h3>
-                  <p className="mt-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <p className="mt-0.5 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
                     {item.organization}
                   </p>
-                  <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400">
+                  <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
                     {item.location}
                   </p>
 
-                  <ul className="mt-3 space-y-1.5 text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xl list-disc list-outside pl-4">
+                  <ul className="mt-2.5 space-y-1.5 text-xs text-gray-500 dark:text-gray-400 leading-relaxed max-w-xl list-disc list-outside pl-4">
                     {item.highlights.map((highlight, hIdx) => (
                       <li key={hIdx}>{highlight}</li>
                     ))}

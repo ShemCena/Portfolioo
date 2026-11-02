@@ -6,10 +6,11 @@ import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
 const NAV_LINKS = [
+  { href: "#what-i-offer", label: "Services" },
   { href: "#projects", label: "Projects" },
   { href: "#technologies", label: "Technologies" },
   { href: "#experience", label: "Experience" },
-  { href: "#about", label: "About" },
+  { href: "#outside", label: "Outside" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -32,7 +33,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 bg-white/80 dark:bg-[#121212]/80 backdrop-blur-xl border-b border-gray-100 dark:border-gray-800 transition-colors">
-      <nav className="max-w-3xl w-full mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-4">
+      <nav className="max-w-2xl w-full mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-4">
         {/* Brand Monogram */}
         <Link
           href="#top"

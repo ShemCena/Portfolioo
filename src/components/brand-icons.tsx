@@ -250,6 +250,57 @@ export function AntigravityIcon({ className = "w-4 h-4", ...props }: IconProps) 
   );
 }
 
+export function VercelIcon({ className = "w-4 h-4", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" {...props}>
+      <title>Vercel</title>
+      <path d="M12 1L24 22H0L12 1Z" />
+    </svg>
+  );
+}
+
+export function SupabaseIcon({ className = "w-4 h-4", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" {...props}>
+      <title>Supabase</title>
+      <path
+        d="M13.4 22.3c-.6.8-1.9.4-1.9-.6V13h8.3c1.3 0 2 1.5 1.2 2.5L13.4 22.3z"
+        fill="#3ECF8E"
+      />
+      <path
+        d="M10.6 1.7c.6-.8 1.9-.4 1.9.6V11H4.2c-1.3 0-2-1.5-1.2-2.5L10.6 1.7z"
+        fill="#3ECF8E"
+        opacity="0.8"
+      />
+    </svg>
+  );
+}
+
+export function PhpIcon({ className = "w-4 h-4", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" {...props}>
+      <title>PHP</title>
+      <ellipse cx="12" cy="12" rx="11" ry="7" fill="#777BB4" />
+      <path
+        d="M5.5 14.5L6.5 9.5H9C10.1 9.5 10.7 10.1 10.5 11.1C10.3 12.1 9.5 12.7 8.4 12.7H6.9L6.5 14.5H5.5ZM7.1 11.7H8.2C8.8 11.7 9.2 11.4 9.3 10.9C9.4 10.4 9.1 10.3 8.5 10.3H7.4L7.1 11.7ZM11 14.5L12 9.5H13L12.4 12H14.4L15 9.5H16L15 14.5H14L14.6 12.8H12.6L12.2 14.5H11ZM16.5 14.5L17.5 9.5H20C21.1 9.5 21.7 10.1 21.5 11.1C21.3 12.1 20.5 12.7 19.4 12.7H17.9L17.5 14.5H16.5ZM18.1 11.7H19.2C19.8 11.7 20.2 11.4 20.3 10.9C20.4 10.4 20.1 10.3 19.5 10.3H18.4L18.1 11.7Z"
+        fill="#FFFFFF"
+      />
+    </svg>
+  );
+}
+
+export function LaravelIcon({ className = "w-4 h-4", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" {...props}>
+      <title>Laravel</title>
+      <path
+        d="M21.2 5.5l-4.7-2.7c-.5-.3-1.1-.3-1.6 0L10.2 5.5c-.5.3-.8.8-.8 1.4v4.5l-2.6 1.5c-.5.3-.8.8-.8 1.4v5.4c0 .6.3 1.1.8 1.4l4.7 2.7c.5.3 1.1.3 1.6 0l4.7-2.7c.5-.3.8-.8.8-1.4v-4.5l2.6-1.5c.5-.3.8-.8.8-1.4V6.9c.1-.6-.2-1.1-.8-1.4zm-10 14.3l-3.9-2.3V13l3.9 2.3v4.5zm1-5.7l-3.8-2.2 7.7-4.4 3.8 2.2-7.7 4.4zm6.8 3.5l-3.9 2.2V15.3l3.9-2.3v4.5zm1.8-6.1l-2.6 1.5v-4.5l2.6-1.5v4.5zm-5-3l-7.7 4.4V8.4l7.7-4.4v4.5z"
+        fill="#FF2D20"
+      />
+    </svg>
+  );
+}
+
 export function GitIcon({ className = "w-4 h-4", ...props }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="none" {...props}>
@@ -320,6 +371,14 @@ export function TechIcon({
     case "express":
     case "expressjs":
       return <ExpressIcon className={className} size={size} />;
+    case "php":
+      return <PhpIcon className={className} size={size} />;
+    case "laravel":
+      return <LaravelIcon className={className} size={size} />;
+    case "vercel":
+      return <VercelIcon className={className} size={size} />;
+    case "supabase":
+      return <SupabaseIcon className={className} size={size} />;
     case "python":
       return <PythonIcon className={className} size={size} />;
     case "postgres":

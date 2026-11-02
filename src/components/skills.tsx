@@ -9,8 +9,14 @@ export function Skills() {
   const { technologies } = PORTFOLIO_DATA;
   const [showGrid, setShowGrid] = React.useState(false);
 
-  // Duplicate items for continuous seamless infinite marquee from left to right
-  const marqueeItems = React.useMemo(() => [...technologies, ...technologies], [technologies]);
+  // Split technologies into two balanced rows of 12 for opposing directions
+  const midPoint = Math.ceil(technologies.length / 2);
+  const row1 = React.useMemo(() => technologies.slice(0, midPoint), [technologies, midPoint]);
+  const row2 = React.useMemo(() => technologies.slice(midPoint), [technologies, midPoint]);
+
+  // Duplicate items for continuous seamless infinite marquee looping
+  const row1Items = React.useMemo(() => [...row1, ...row1], [row1]);
+  const row2Items = React.useMemo(() => [...row2, ...row2], [row2]);
 
   return (
     <section id="technologies" className="py-12 border-b border-dashed border-gray-200 dark:border-gray-800">
@@ -18,11 +24,11 @@ export function Skills() {
         {/* Header with View All action */}
         <div className="flex items-center justify-between">
           <div className="space-y-1">
-            <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-gray-900 dark:text-white">
-              Technologies
+            <h2 className="text-xl sm:text-2xl font-light tracking-tight text-gray-900 dark:text-white">
+              Technologies &amp; Tools
             </h2>
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-              Languages, libraries, databases, and AI developer tools I build with.
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              Modern full-stack frameworks, relational database engines, and analytics tooling deployed in production.
             </p>
           </div>
 
@@ -41,21 +47,35 @@ export function Skills() {
           </button>
         </div>
 
-        {/* Animated Marquee (Moving from Left to Right) */}
-        <div className="relative w-full overflow-hidden py-2 select-none group/marquee">
+        {/* Dual Opposing Direction Animated Marquee Tracks */}
+        <div className="relative w-full overflow-hidden py-1 select-none space-y-3">
           {/* Subtle edge fade masks */}
           <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-white dark:from-ink to-transparent z-10" />
           <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-white dark:from-ink to-transparent z-10" />
 
-          {/* Marquee Track moving left to right */}
+          {/* Row 1: Left to Right */}
           <div className="animate-marquee-ltr flex items-center gap-2.5 sm:gap-3 pr-3">
-            {marqueeItems.map((tech, idx) => (
+            {row1Items.map((tech, idx) => (
               <span
-                key={`${tech.name}-${idx}`}
-                className="bg-white dark:bg-ink shrink-0 inline-flex items-center gap-2 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 px-3.5 py-2 text-[0.92rem] leading-none text-gray-800 dark:text-gray-200 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-gray-400 dark:hover:border-gray-500 cursor-pointer"
+                key={`r1-${tech.name}-${idx}`}
+                className="bg-white dark:bg-ink shrink-0 inline-flex items-center gap-2 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 px-2.5 py-1.5 text-xs leading-none text-gray-800 dark:text-gray-200 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-gray-400 dark:hover:border-gray-500 cursor-pointer"
                 title={tech.name}
               >
-                <TechIcon name={tech.iconKey} className="w-4 h-4 shrink-0" />
+                <TechIcon name={tech.iconKey} className="w-3.5 h-3.5 shrink-0" />
+                <span className="font-medium whitespace-nowrap">{tech.name}</span>
+              </span>
+            ))}
+          </div>
+
+          {/* Row 2: Right to Left (Opposing Direction) */}
+          <div className="animate-marquee-rtl flex items-center gap-2.5 sm:gap-3 pr-3">
+            {row2Items.map((tech, idx) => (
+              <span
+                key={`r2-${tech.name}-${idx}`}
+                className="bg-white dark:bg-ink shrink-0 inline-flex items-center gap-2 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 px-2.5 py-1.5 text-xs leading-none text-gray-800 dark:text-gray-200 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-gray-400 dark:hover:border-gray-500 cursor-pointer"
+                title={tech.name}
+              >
+                <TechIcon name={tech.iconKey} className="w-3.5 h-3.5 shrink-0" />
                 <span className="font-medium whitespace-nowrap">{tech.name}</span>
               </span>
             ))}

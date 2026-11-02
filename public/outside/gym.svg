@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Dark moody gym interior lighting -->
+    <radialGradient id="gym-spotlight" cx="50%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#2a2e39" />
+      <stop offset="50%" stop-color="#14171f" />
+      <stop offset="100%" stop-color="#08090d" />
+    </radialGradient>
+
+    <!-- Warm overhead accent light -->
+    <linearGradient id="gym-warm-glow" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Chrome barbell knurling metal gradient -->
+    <linearGradient id="bar-metal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d4d4d8" />
+      <stop offset="30%" stop-color="#f4f4f5" />
+      <stop offset="50%" stop-color="#71717a" />
+      <stop offset="70%" stop-color="#27272a" />
+      <stop offset="100%" stop-color="#09090b" />
+    </linearGradient>
+
+    <!-- Cast iron weight plate texture -->
+    <linearGradient id="plate-iron" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3f3f46" />
+      <stop offset="35%" stop-color="#18181b" />
+      <stop offset="70%" stop-color="#27272a" />
+      <stop offset="100%" stop-color="#09090b" />
+    </linearGradient>
+
+    <linearGradient id="mirror-reflection" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.04" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.02" />
+    </linearGradient>
+  </defs>
+
+  <!-- Dark Atmospheric Studio Background -->
+  <rect width="500" height="500" fill="url(#gym-spotlight)" />
+
+  <!-- Background Gym Mirror & Vertical Frame Lines -->
+  <rect x="40" y="30" width="420" height="340" rx="6" fill="#0c0e14" stroke="#1f2430" stroke-width="2" />
+  <rect x="40" y="30" width="420" height="340" fill="url(#mirror-reflection)" />
+  <line x1="250" y1="30" x2="250" y2="370" stroke="#181c26" stroke-width="2" />
+
+  <!-- Overhead Neon Light Bar (Moody Gym Lighting) -->
+  <line x1="100" y1="20" x2="400" y2="20" stroke="#f4f4f5" stroke-width="3" opacity="0.8" />
+  <line x1="80" y1="20" x2="420" y2="20" stroke="#f59e0b" stroke-width="8" opacity="0.12" />
+  <rect width="500" height="250" fill="url(#gym-warm-glow)" />
+
+  <!-- Power Rack Heavy Steel Columns -->
+  <rect x="65" y="40" width="22" height="420" rx="3" fill="#18181b" stroke="#27272a" stroke-width="2" />
+  <rect x="413" y="40" width="22" height="420" rx="3" fill="#18181b" stroke="#27272a" stroke-width="2" />
+
+  <!-- Rack Precision Peg Holes -->
+  <g fill="#09090b">
+    <circle cx="76" cy="100" r="3.5" />
+    <circle cx="76" cy="140" r="3.5" />
+    <circle cx="76" cy="180" r="3.5" />
+    <circle cx="76" cy="220" r="3.5" />
+    <circle cx="76" cy="260" r="3.5" />
+    <circle cx="76" cy="300" r="3.5" />
+    <circle cx="424" cy="100" r="3.5" />
+    <circle cx="424" cy="140" r="3.5" />
+    <circle cx="424" cy="180" r="3.5" />
+    <circle cx="424" cy="220" r="3.5" />
+    <circle cx="424" cy="260" r="3.5" />
+    <circle cx="424" cy="300" r="3.5" />
+  </g>
+
+  <!-- Rubber Gym Flooring Horizon -->
+  <rect x="0" y="380" width="500" height="120" fill="#090a0f" />
+  <line x1="0" y1="380" x2="500" y2="380" stroke="#1c202a" stroke-width="2" />
+
+  <!-- Olympic Barbell Across J-Hooks -->
+  <!-- J-Hooks -->
+  <rect x="58" y="245" width="36" height="18" rx="3" fill="#27272a" stroke="#3f3f46" stroke-width="1.5" />
+  <rect x="406" y="245" width="36" height="18" rx="3" fill="#27272a" stroke="#3f3f46" stroke-width="1.5" />
+
+  <!-- Solid Bar Shaft -->
+  <rect x="45" y="248" width="410" height="10" rx="5" fill="url(#bar-metal)" />
+  <!-- Knurling Texture -->
+  <rect x="130" y="248" width="90" height="10" fill="#71717a" opacity="0.6" stroke-dasharray="1 1" />
+  <rect x="280" y="248" width="90" height="10" fill="#71717a" opacity="0.6" stroke-dasharray="1 1" />
+
+  <!-- Left Loaded Weight Plates -->
+  <g>
+    <!-- Plate 1 (45lb / 20kg Outer) -->
+    <rect x="75" y="160" width="16" height="186" rx="6" fill="url(#plate-iron)" stroke="#3f3f46" stroke-width="2" />
+    <circle cx="83" cy="253" r="14" fill="#18181b" stroke="#52525b" stroke-width="1" />
+    <!-- Plate 2 -->
+    <rect x="94" y="172" width="14" height="162" rx="5" fill="url(#plate-iron)" stroke="#3f3f46" stroke-width="1.5" />
+    <!-- Plate 3 -->
+    <rect x="110" y="188" width="12" height="130" rx="4" fill="url(#plate-iron)" stroke="#3f3f46" stroke-width="1.5" />
+    <!-- Bar Collar Lock -->
+    <rect x="124" y="242" width="10" height="22" rx="2" fill="#d97706" stroke="#b45309" stroke-width="1" />
+  </g>
+
+  <!-- Right Loaded Weight Plates -->
+  <g>
+    <!-- Plate 1 (45lb / 20kg Outer) -->
+    <rect x="409" y="160" width="16" height="186" rx="6" fill="url(#plate-iron)" stroke="#3f3f46" stroke-width="2" />
+    <circle cx="417" cy="253" r="14" fill="#18181b" stroke="#52525b" stroke-width="1" />
+    <!-- Plate 2 -->
+    <rect x="392" y="172" width="14" height="162" rx="5" fill="url(#plate-iron)" stroke="#3f3f46" stroke-width="1.5" />
+    <!-- Plate 3 -->
+    <rect x="378" y="188" width="12" height="130" rx="4" fill="url(#plate-iron)" stroke="#3f3f46" stroke-width="1.5" />
+    <!-- Bar Collar Lock -->
+    <rect x="366" y="242" width="10" height="22" rx="2" fill="#d97706" stroke="#b45309" stroke-width="1" />
+  </g>
+
+  <!-- Heavy Cast-Iron Dumbbell on Floor (Foreground) -->
+  <g transform="translate(160, 395)">
+    <!-- Shadow -->
+    <ellipse cx="90" cy="55" rx="85" ry="12" fill="#000000" opacity="0.6" />
+    <!-- Left Hex Head -->
+    <polygon points="15,10 40,10 50,30 40,50 15,50 5,30" fill="url(#plate-iron)" stroke="#52525b" stroke-width="1.5" />
+    <!-- Knurled Handle -->
+    <rect x="45" y="25" width="90" height="12" rx="4" fill="url(#bar-metal)" />
+    <!-- Right Hex Head -->
+    <polygon points="140,10 165,10 175,30 165,50 140,50 130,30" fill="url(#plate-iron)" stroke="#52525b" stroke-width="1.5" />
+  </g>
+
+  <!-- Cinematic Vignette Overlay -->
+  <rect width="500" height="500" fill="none" stroke="#000000" stroke-width="30" opacity="0.3" rx="16" />
+</svg>

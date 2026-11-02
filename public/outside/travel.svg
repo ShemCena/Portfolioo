@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Cinematic Golden Hour Sky Gradient -->
+    <linearGradient id="travel-sky" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="30%" stop-color="#1e1b4b" />
+      <stop offset="55%" stop-color="#4c1d95" />
+      <stop offset="75%" stop-color="#b45309" />
+      <stop offset="95%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#fef08a" />
+    </linearGradient>
+
+    <!-- Glowing Golden Sun -->
+    <radialGradient id="sun-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#fef08a" />
+      <stop offset="80%" stop-color="#f59e0b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Mountain Layers -->
+    <linearGradient id="mountain-deep" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#312e81" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="mountain-mid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#090a12" />
+    </linearGradient>
+    <linearGradient id="mountain-front" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0c0e17" />
+      <stop offset="100%" stop-color="#050608" />
+    </linearGradient>
+
+    <!-- Valley Mist -->
+    <linearGradient id="valley-mist" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky Canvas -->
+  <rect width="500" height="500" fill="url(#travel-sky)" />
+
+  <!-- Stars in Twilight Sky -->
+  <g fill="#ffffff">
+    <circle cx="80" cy="50" r="1.5" opacity="0.9" />
+    <circle cx="160" cy="35" r="1.2" opacity="0.7" />
+    <circle cx="240" cy="65" r="1" opacity="0.6" />
+    <circle cx="340" cy="40" r="1.6" opacity="0.85" />
+    <circle cx="430" cy="70" r="1.2" opacity="0.7" />
+    <circle cx="110" cy="95" r="1" opacity="0.5" />
+    <circle cx="390" cy="90" r="1.4" opacity="0.8" />
+  </g>
+
+  <!-- Glowing Sun on Mountain Gap -->
+  <circle cx="280" cy="270" r="120" fill="url(#sun-glow)" />
+
+  <!-- Distant Alpine Mountain Peaks (Layer 1) -->
+  <polygon points="-20,380 90,210 210,360" fill="url(#mountain-deep)" opacity="0.8" />
+  <polygon points="140,370 270,180 390,370" fill="url(#mountain-deep)" opacity="0.85" />
+  <polygon points="320,380 440,220 520,380" fill="url(#mountain-deep)" opacity="0.8" />
+
+  <!-- Snow Highlights on Distant Peaks -->
+  <polygon points="270,180 250,215 270,205 290,215" fill="#ffffff" opacity="0.8" />
+  <polygon points="90,210 75,235 90,228 105,235" fill="#ffffff" opacity="0.75" />
+  <polygon points="440,220 425,245 440,238 455,245" fill="#ffffff" opacity="0.75" />
+
+  <!-- Mid-Ground Ridge (Layer 2) -->
+  <polygon points="-40,430 80,310 220,440" fill="url(#mountain-mid)" />
+  <polygon points="160,440 330,260 490,440" fill="url(#mountain-mid)" />
+
+  <!-- Valley Golden Light Mist -->
+  <rect x="0" y="320" width="500" height="70" fill="url(#valley-mist)" />
+
+  <!-- Foreground Dramatic Ridge (Layer 3) -->
+  <polygon points="-10,500 140,360 320,500" fill="url(#mountain-front)" />
+  <polygon points="240,500 410,340 520,500" fill="url(#mountain-front)" />
+
+  <!-- Foreground Silhouette Alpine Pine Trees -->
+  <g fill="#050608">
+    <!-- Tree 1 -->
+    <polygon points="135,365 140,345 145,365" />
+    <polygon points="133,375 140,358 147,375" />
+    <!-- Tree 2 -->
+    <polygon points="152,380 156,360 160,380" />
+    <!-- Tree 3 -->
+    <polygon points="405,348 410,325 415,348" />
+    <polygon points="403,360 410,340 417,360" />
+    <!-- Tree 4 -->
+    <polygon points="390,370 394,352 398,370" />
+  </g>
+
+  <!-- Dramatic Silhouette Figure Looking Out (Sense of Scale & Adventure) -->
+  <g transform="translate(142, 335)">
+    <!-- Head -->
+    <circle cx="8" cy="4" r="3.5" fill="#030405" />
+    <!-- Torso with backpack -->
+    <path d="M4 8 L12 8 L14 20 L2 20 Z" fill="#030405" />
+    <rect x="0" y="9" width="4" height="9" rx="2" fill="#030405" />
+    <!-- Legs -->
+    <line x1="5" y1="20" x2="4" y2="30" stroke="#030405" stroke-width="2.5" />
+    <line x1="11" y1="20" x2="13" y2="30" stroke="#030405" stroke-width="2.5" />
+  </g>
+
+  <!-- Film Vignette -->
+  <rect width="500" height="500" fill="none" stroke="#000000" stroke-width="26" opacity="0.25" rx="16" />
+</svg>

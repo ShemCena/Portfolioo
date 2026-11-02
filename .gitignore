@@ -1,53 +1,53 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.*
 .yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
 
-# testing
-/coverage
+# Environment variables & secrets (CRITICAL: Never commit secrets)
+.env
+.env*
+.env.local
+.env.production
+.env.development
+.env.test
+!.env.example
 
-# next.js
+# Next.js & Build outputs
 /.next/
 /out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
+/build/
 *.tsbuildinfo
 next-env.d.ts
 
-!.env.example
+# Vercel deployment cache
+.vercel
 
-# Ruflo local secrets and runtime data
-.env
-.env.local
-.env.*.local
-.claude-flow/data/
-.claude-flow/logs/
-screenshot-*.png
+# AI Agents, Agent Skills, Swarms & Orchestration (DO NOT PUSH)
+.agents/
+.claude/
+.claude-flow/
+.swarm/
+.taste-skill/
+skills/
+.gemini/
+*.sqlite
+*.db
+.mcp.json
 
-.claude-flow/sessions/
+# Internal Agent Specs, Blueprints & Documents (DO NOT PUSH)
+AGENTS.md
+CLAUDE.md
+DESIGN.md
+PORTFOLIO_BLUEPRINT.md
+PRODUCT.md
+
+# Screenshots & Inspection Media
+screenshot*.png
+hero_*.png
+page_*.png
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
