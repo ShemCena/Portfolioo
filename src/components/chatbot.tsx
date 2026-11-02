@@ -70,18 +70,39 @@ export function Chatbot() {
 
   React.useEffect(() => {
     if (!open) return;
-    inputRef.current?.focus();
+    // Only auto-focus on desktop devices (width >= 640px)
+    // On mobile touch devices, auto-focus causes unwanted keyboard popup and layout jumping
+    if (typeof window !== "undefined" && window.innerWidth >= 640) {
+      inputRef.current?.focus();
+    }
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  // Lock background scroll on mobile when chat modal is open
+  React.useEffect(() => {
+    if (open && typeof window !== "undefined" && window.innerWidth < 640) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [open]);
+
   async function send(text: string) {
     const content = text.trim().slice(0, 1000);
     if (!content || loading) return;
+
+    // Filter valid history to prevent empty content from crashing schema validation
     const userMsg: Msg = { role: "user", content };
-    const history: Msg[] = [...messages, userMsg].slice(-12);
-    setMessages([...history, { role: "assistant", content: "" }]);
+    const validHistory: Msg[] = [
+      ...messages.filter((m) => m.content && m.content.trim().length > 0),
+      userMsg,
+    ].slice(-12);
+
+    setMessages([...validHistory, { role: "assistant", content: "" }]);
     setInput("");
     setLoading(true);
     setFailed(false);
@@ -90,23 +111,45 @@ export function Chatbot() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: history }),
+        body: JSON.stringify({ messages: validHistory }),
       });
-      if (!res.ok || !res.body) throw new Error("bad response");
 
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let answer = "";
-      for (;;) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        answer += decoder.decode(value, { stream: true });
-        setMessages([...history, { role: "assistant", content: answer }]);
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => null);
+        console.error("Chat API error:", res.status, errorData);
+        throw new Error(errorData?.error || `HTTP ${res.status}`);
       }
-      if (!answer.trim()) throw new Error("empty response");
-    } catch {
+
+      // Check for streaming reader support
+      if (res.body && typeof res.body.getReader === "function") {
+        try {
+          const reader = res.body.getReader();
+          const decoder = new TextDecoder();
+          let answer = "";
+          for (;;) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            answer += decoder.decode(value, { stream: true });
+            setMessages([...validHistory, { role: "assistant", content: answer }]);
+          }
+          if (answer.trim()) return;
+        } catch (streamErr) {
+          console.warn("Stream reading fallback triggered:", streamErr);
+        }
+      }
+
+      // Fallback: Read full text response if streaming wasn't supported or interrupted
+      const fullText = await res.text();
+      if (fullText.trim()) {
+        setMessages([...validHistory, { role: "assistant", content: fullText }]);
+      } else {
+        throw new Error("Empty response received from assistant");
+      }
+    } catch (err) {
+      console.error("Assistant send error:", err);
       setFailed(true);
-      setMessages(history);
+      // Clean up the empty assistant placeholder on error
+      setMessages(validHistory);
     } finally {
       setLoading(false);
     }
@@ -133,7 +176,9 @@ export function Chatbot() {
         aria-expanded={open}
         aria-controls="chat-panel"
         aria-label={open ? "Close chat" : `Ask about ${name}`}
-        className="fixed bottom-6 right-4 sm:right-6 z-40 inline-flex items-center gap-2 px-3.5 py-2.5 rounded-full border border-gray-200 dark:border-gray-800 bg-[#121212] text-white dark:bg-white dark:text-black shadow-xl hover:opacity-95 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 transition-all duration-200 select-none cursor-pointer"
+        className={`fixed bottom-6 right-4 sm:right-6 z-40 items-center gap-2 px-3.5 py-2.5 rounded-full border border-gray-200 dark:border-gray-800 bg-[#121212] text-white dark:bg-white dark:text-black shadow-xl hover:opacity-95 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 transition-all duration-200 select-none cursor-pointer ${
+          open ? "hidden sm:inline-flex" : "inline-flex"
+        }`}
       >
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -143,13 +188,22 @@ export function Chatbot() {
         {open ? <X className="h-3.5 w-3.5 ml-0.5 text-gray-300 dark:text-gray-600" /> : <MessageSquare className="h-3.5 w-3.5 ml-0.5 text-emerald-400 dark:text-emerald-600" />}
       </button>
 
+      {/* Mobile Backdrop Overlay */}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="sm:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-2xs animate-in fade-in duration-150"
+          aria-hidden="true"
+        />
+      )}
+
       {/* Floating Chat Modal Panel */}
       {open && (
         <div
           id="chat-panel"
           role="dialog"
           aria-label={`Chat about ${name}`}
-          className="fixed bottom-20 right-4 sm:right-6 z-50 flex h-[28rem] sm:h-[30rem] w-[calc(100vw-2rem)] max-w-sm flex-col rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#141414] shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200"
+          className="fixed inset-x-2 bottom-2 sm:bottom-20 sm:right-6 sm:inset-x-auto z-50 flex h-[calc(100dvh-3.5rem)] max-h-[580px] sm:h-[30rem] w-[calc(100vw-1rem)] sm:w-96 flex-col rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#141414] shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200 overscroll-contain"
         >
           {/* Header */}
           <div className="border-b border-gray-100 dark:border-gray-800 px-4 py-3 bg-gray-50/70 dark:bg-zinc-900/60 flex items-center justify-between">
@@ -177,7 +231,7 @@ export function Chatbot() {
           </div>
 
           {/* Messages Area */}
-          <div className="flex-1 space-y-3 overflow-y-auto p-4 text-xs" aria-live="polite">
+          <div className="flex-1 space-y-3 overflow-y-auto p-4 text-xs overscroll-contain" aria-live="polite">
             {messages.length === 0 && (
               <div className="space-y-3 pt-1">
                 <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
@@ -189,7 +243,7 @@ export function Chatbot() {
                       key={s.label}
                       type="button"
                       onClick={() => send(s.label)}
-                      className="group flex items-center justify-between text-left rounded-lg border border-dashed border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-zinc-900/40 p-2 text-xs font-mono text-gray-700 dark:text-gray-300 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-colors cursor-pointer"
+                      className="group flex items-center justify-between text-left rounded-lg border border-dashed border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-zinc-900/40 p-2.5 sm:p-2 text-xs font-mono text-gray-700 dark:text-gray-300 hover:border-emerald-500/40 hover:bg-emerald-500/5 active:scale-98 transition-all cursor-pointer"
                     >
                       <span>&gt; {s.label}</span>
                       <span className="text-[10px] px-1.5 py-0.5 rounded bg-gray-100 dark:bg-zinc-800 text-gray-500 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
@@ -246,7 +300,7 @@ export function Chatbot() {
               e.preventDefault();
               send(input);
             }}
-            className="flex gap-2 border-t border-gray-100 dark:border-gray-800 p-3 bg-white dark:bg-[#141414]"
+            className="flex items-center gap-2 border-t border-gray-100 dark:border-gray-800 p-3 bg-white dark:bg-[#141414]"
           >
             <input
               ref={inputRef}
@@ -255,15 +309,15 @@ export function Chatbot() {
               maxLength={1000}
               placeholder="Ask a question about Shem..."
               aria-label="Your question"
-              className="min-w-0 flex-1 rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-zinc-900/60 px-3 py-2 text-xs text-gray-900 dark:text-white placeholder-gray-400 outline-none focus:border-emerald-500 transition-colors"
+              className="min-w-0 flex-1 rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-zinc-900/60 px-3 py-2 text-base sm:text-xs text-gray-900 dark:text-white placeholder-gray-400 outline-none focus:border-emerald-500 transition-colors"
             />
             <button
               type="submit"
               disabled={loading || !input.trim()}
               aria-label="Send message"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#121212] dark:bg-white text-white dark:text-black disabled:opacity-40 hover:opacity-90 transition-opacity cursor-pointer"
+              className="inline-flex h-9 w-9 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-xl bg-[#121212] dark:bg-white text-white dark:text-black disabled:opacity-40 hover:opacity-90 active:scale-95 transition-all cursor-pointer"
             >
-              <Send className="h-3.5 w-3.5" />
+              <Send className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
             </button>
           </form>
         </div>
