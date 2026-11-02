@@ -55,7 +55,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     monogram: "HSB",
     title: "Full-Stack Web Developer & Data Analyst",
     location: "Philippines",
-    bio: "I build responsive, type-safe web applications with the MERN stack and transform chaotic business spreadsheets into automated executive dashboards with SQL, Python, and Power BI—helping founders and operational teams save 10+ hours of manual work every week and make confident, data-backed decisions.",
+    bio: "I build responsive, type-safe full stack web applications and transform chaotic business spreadsheets into automated executive dashboards with SQL, Python, and Power BI—helping founders and operational teams save 10+ hours of manual work every week and make confident, data-backed decisions.",
     status: "Open to new opportunities",
     email: "shemcena@gmail.com",
     github: "https://github.com/ShemCena",

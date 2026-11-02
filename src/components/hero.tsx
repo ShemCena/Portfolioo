@@ -1,7 +1,9 @@
 "use client";
 
+import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/lib/data";
 import { GithubIcon, LinkedinIcon } from "@/components/social-icons";
@@ -9,6 +11,20 @@ import { VisitorCounter } from "@/components/visitor-counter";
 
 export function Hero() {
   const { personal } = PORTFOLIO_DATA;
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+  const [isFlipped, setIsFlipped] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Theme-aware avatar swap:
+  // In dark mode: base = default, alternate = hover
+  // In light mode: base = hover, alternate = default
+  // When clicked/tapped (on mobile or desktop): inverts to the other look
+  const isDark = !mounted || resolvedTheme === "dark";
+  const showSecondPicture = isDark ? isFlipped : !isFlipped;
 
   return (
     <section id="top" className="pt-8 sm:pt-12 pb-10 border-b border-dashed border-gray-200 dark:border-gray-800">
@@ -30,29 +46,40 @@ export function Hero() {
 
       {/* Profile Header Row: Dual-Picture Avatar + Name + Subtitle */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 mb-5">
-        {/* Interactive Dual-Picture Avatar with Hover Reveal */}
-        <div
-          className="animate-hero-avatar relative group/avatar h-20 w-20 sm:h-22 sm:w-22 shrink-0 rounded-full border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] shadow-xs overflow-hidden select-none cursor-pointer transition-all duration-300 hover:scale-105 hover:ring-2 hover:ring-emerald-500/50"
-          title="Hover to reveal alternate picture"
+        {/* Interactive Dual-Picture Avatar with Click Toggle & Theme Switch */}
+        <button
+          type="button"
+          onClick={() => setIsFlipped((prev) => !prev)}
+          className="animate-hero-avatar relative group/avatar h-20 w-20 sm:h-22 sm:w-22 shrink-0 rounded-full border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] shadow-xs overflow-hidden select-none cursor-pointer transition-all duration-300 hover:scale-105 hover:ring-2 hover:ring-emerald-500/50 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-500 text-left p-0"
+          title="Click or tap to switch profile picture"
+          aria-label="Switch profile picture"
         >
-          {/* Default Picture (State 1) */}
+          {/* Picture 1 (Professional Look) */}
           <Image
             src={personal.avatarDefault || "/profile-default.svg"}
             alt={personal.name}
             width={96}
             height={96}
             unoptimized
-            className="absolute inset-0 h-full w-full object-cover transition-all duration-300 ease-out group-hover/avatar:opacity-0 group-hover/avatar:scale-110 pointer-events-none"
+            className={`absolute inset-0 h-full w-full object-cover transition-all duration-300 ease-out pointer-events-none ${
+              showSecondPicture
+                ? "opacity-0 scale-95 group-hover/avatar:opacity-100 group-hover/avatar:scale-100"
+                : "opacity-100 scale-100 group-hover/avatar:opacity-0 group-hover/avatar:scale-110"
+            }`}
           />
 
-          {/* Hover Picture Revealed (State 2) */}
+          {/* Picture 2 (Creative Alternate Look) */}
           <Image
             src={personal.avatarHover || "/profile-hover.svg"}
             alt={`${personal.name} alternate profile`}
             width={96}
             height={96}
             unoptimized
-            className="absolute inset-0 h-full w-full object-cover opacity-0 scale-95 transition-all duration-300 ease-out group-hover/avatar:opacity-100 group-hover/avatar:scale-100 pointer-events-none"
+            className={`absolute inset-0 h-full w-full object-cover transition-all duration-300 ease-out pointer-events-none ${
+              showSecondPicture
+                ? "opacity-100 scale-100 group-hover/avatar:opacity-0 group-hover/avatar:scale-110"
+                : "opacity-0 scale-95 group-hover/avatar:opacity-100 group-hover/avatar:scale-100"
+            }`}
           />
 
           {/* Fallback Monogram background */}
@@ -61,7 +88,7 @@ export function Hero() {
               {personal.monogram}
             </span>
           </div>
-        </div>
+        </button>
 
         {/* Identity & Subtitle - Styled & Animated Dual Pillars */}
         <div className="space-y-1.5">
@@ -85,9 +112,9 @@ export function Hero() {
       {/* Bio Paragraph */}
       <div className="space-y-4">
         <p className="animate-hero-bio text-xs sm:text-sm font-light leading-relaxed text-gray-700 dark:text-gray-300 max-w-xl">
-          I build responsive, type-safe web applications with the{" "}
+          I build responsive, type-safe{" "}
           <strong className="font-medium text-gray-900 dark:text-white underline decoration-emerald-500/40 decoration-1 underline-offset-2 hover:decoration-emerald-500 transition-colors">
-            MERN stack
+            full stack web applications
           </strong>{" "}
           and transform chaotic business spreadsheets into automated executive dashboards with{" "}
           <strong className="font-medium text-gray-900 dark:text-white underline decoration-amber-500/40 decoration-1 underline-offset-2 hover:decoration-amber-500 transition-colors">

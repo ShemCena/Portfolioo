@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { ArrowUp } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/lib/data";
-import { VisitorCounter } from "@/components/visitor-counter";
 import { GithubIcon, LinkedinIcon } from "@/components/social-icons";
 
 export function Footer() {
@@ -21,8 +20,6 @@ export function Footer() {
         <p>
           &copy; {currentYear} {personal.name}. All rights reserved.
         </p>
-        <span className="hidden sm:inline text-gray-300 dark:text-gray-700">|</span>
-        <VisitorCounter />
       </div>
 
       <div className="flex items-center gap-4">
