@@ -128,6 +128,7 @@ async function dispatchRealEmail({
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64)",
         },
         body: JSON.stringify({
           access_key: web3Key,
@@ -140,9 +141,16 @@ async function dispatchRealEmail({
         }),
       });
 
-      const data = await res.json().catch(() => null);
+      const text = await res.text();
+      let data: { success?: boolean; message?: string } | null = null;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        console.warn("Web3Forms returned non-JSON response:", text.slice(0, 150));
+      }
+
       if (res.ok && data?.success) {
-        console.log("[Email Dispatch] Web3Forms dispatched successfully to shemcena@gmail.com!");
+        console.log("[Email Dispatch] Web3Forms dispatched successfully to recipient inbox!");
         return { delivered: true, provider: "Web3Forms" };
       } else {
         console.warn("Web3Forms API returned non-success response:", data);
@@ -304,9 +312,21 @@ export async function POST(req: Request) {
       `[Email Dispatch] From: ${cleanSenderName} (${cleanSenderEmail}) | Subject: "${cleanSubject}" | Status: ${inquiryRecord.deliveryStatus}`
     );
 
+    if (!dispatchResult.delivered) {
+      return NextResponse.json(
+        {
+          success: false,
+          delivered: false,
+          provider: dispatchResult.provider,
+          error: dispatchResult.error || "Unable to deliver message to inbox.",
+        },
+        { status: 502 }
+      );
+    }
+
     return NextResponse.json({
       success: true,
-      delivered: dispatchResult.delivered,
+      delivered: true,
       provider: dispatchResult.provider,
       message: "Your message has been sent directly to Shem! He will reply to your email shortly.",
     });
