@@ -51,7 +51,10 @@ export function DirectEmailModal({ isOpen, onClose, defaultSubject = "" }: Direc
       setStatus("submitting");
       setErrorMessage("");
 
-      const web3Key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+      const web3Key =
+        process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+        process.env.WEB3FORMS_ACCESS_KEY ||
+        "fc179080-fa65-4f36-8a6c-fa70438cf135";
       let web3Succeeded = false;
 
       // 1. Direct browser dispatch via Web3Forms (bypasses server Cloudflare blocks)
@@ -177,9 +180,19 @@ export function DirectEmailModal({ isOpen, onClose, defaultSubject = "" }: Direc
         ) : (
           <form onSubmit={handleSubmit} className="space-y-3.5">
             {status === "error" && (
-              <div className="flex items-center gap-2 p-2.5 rounded-lg border border-red-500/20 bg-red-500/10 text-red-600 dark:text-red-400 text-xs">
-                <AlertCircle className="w-4 h-4 shrink-0" />
-                <span>{errorMessage}</span>
+              <div className="space-y-2 p-3 rounded-lg border border-red-500/20 bg-red-500/10 text-red-600 dark:text-red-400 text-xs">
+                <div className="flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>{errorMessage}</span>
+                </div>
+                <div className="pt-0.5">
+                  <a
+                    href={`mailto:shemcena@gmail.com?subject=${encodeURIComponent(subject || "Portfolio Project Inquiry")}&body=${encodeURIComponent(`From: ${senderName} (${senderEmail})\n\n${message}`)}`}
+                    className="inline-flex items-center gap-1 underline font-medium hover:opacity-80"
+                  >
+                    Click to launch your email client directly (shemcena@gmail.com) →
+                  </a>
+                </div>
               </div>
             )}
 
