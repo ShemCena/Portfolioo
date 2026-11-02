@@ -17,7 +17,14 @@ const SUGGESTIONS = [
 ];
 
 function FormattedAssistantMessage({ content }: { content: string }) {
-  const parts = content.split(/(\*\*[^*]+\*\*)/g);
+  // Strip any accidental meta scratchpads or planning checklists
+  const cleanContent = content
+    .replace(/^(\*?\*?word count[^\n]*\n*)+/gi, "")
+    .replace(/^(\*?\*?constraints:[^\n]*\n*)+/gi, "")
+    .replace(/^\s*\*\s*word count[^\n]*\n*/gi, "")
+    .trimStart();
+
+  const parts = cleanContent.split(/(\*\*[^*]+\*\*)/g);
   return (
     <>
       {parts.map((part, index) => {
