@@ -52,6 +52,8 @@ Name: ${personal.name} (${personal.monogram})
 Title: ${personal.title}
 Location: ${personal.location} (GMT+8)
 Availability: ${personal.status}
+GitHub: ${personal.github}
+LinkedIn: ${personal.linkedin}
 Bio: ${personal.bio}
 
 Technologies:

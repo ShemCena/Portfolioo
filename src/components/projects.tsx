@@ -4,6 +4,7 @@ import * as React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { PORTFOLIO_DATA, ProjectItem } from "@/lib/data";
 import { TechIcon } from "@/components/brand-icons";
+import { GithubIcon } from "@/components/social-icons";
 
 function ProjectVisual({ previewType }: { previewType: ProjectItem["previewType"] }) {
   if (previewType === "sales-dashboard") {
@@ -189,15 +190,38 @@ export function Projects() {
               className="flex h-full w-full flex-col rounded-xl border border-dashed border-gray-300 bg-white p-3 transition-all duration-300 dark:border-gray-700 dark:bg-ink hover:-translate-y-1 hover:shadow-md hover:border-gray-400 dark:hover:border-gray-600"
             >
               {/* 16:10 Visual Preview Window */}
-              <div className="h-32 sm:h-34 w-full rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 bg-gray-900 relative">
-                <ProjectVisual previewType={project.previewType} />
-              </div>
+              {project.githubUrl ? (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-32 sm:h-34 w-full rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 bg-gray-900 relative cursor-pointer group/preview"
+                  title={`View ${project.title} on GitHub`}
+                >
+                  <ProjectVisual previewType={project.previewType} />
+                </a>
+              ) : (
+                <div className="h-32 sm:h-34 w-full rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 bg-gray-900 relative">
+                  <ProjectVisual previewType={project.previewType} />
+                </div>
+              )}
 
               {/* Card Body */}
               <div className="mt-2.5 flex flex-1 flex-col">
                 {/* Title */}
                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white leading-snug">
-                  {project.title}
+                  {project.githubUrl ? (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                    >
+                      {project.title}
+                    </a>
+                  ) : (
+                    project.title
+                  )}
                 </h3>
 
                 {/* Role / Subtitle */}
@@ -233,9 +257,10 @@ export function Projects() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-widest text-gray-400 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+                    className="group inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
                   >
-                    <span>VISIT SITE</span>
+                    <GithubIcon className="w-3.5 h-3.5 text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors" />
+                    <span>GITHUB</span>
                     <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                 )}
